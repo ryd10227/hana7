@@ -35,9 +35,29 @@ function q3() {
   console.log(id1, id2, id3);
 }
 
+function q4() {
+  const user = { name: "Hong", passwd: "xyz", addr: "Seoul" };
+
+  function getUserValueExceptInitial(k) {
+    const { [k]: val } = user;
+
+    // const [first, ...rest] = val;
+    // FIXME: first 변수 생략
+    const [, ...rest] = val;
+
+    return rest.join("");
+  }
+
+  console.log(getUserValueExceptInitial("name")); // 'ong'
+  console.log(getUserValueExceptInitial("passwd")); // 'yz'
+  console.log(getUserValueExceptInitial("addr")); // 'eoul'
+}
+
 console.log("\n----------1----------");
 q1();
 console.log("\n----------2----------");
 q2();
 console.log("\n----------3----------");
 q3();
+console.log("\n----------4----------");
+q4();
