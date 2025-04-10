@@ -1,3 +1,5 @@
+const assert = require("assert");
+
 // 1 ~ n까지의 원소로 이루어진 배열을 만드는 함수를 재귀함수로 작성하시오. Loop 안 됨.
 // (단, array 메소드를 사용하지 말고, destructuring을 사용하시오)
 function q1() {
@@ -61,13 +63,33 @@ function q5() {
       ]);
     }
   }
-  console.log(recurFibonacci(7));
+
+  function recurFibonacci1(n) {
+    if (n <= 1) return n;
+    return recurFibonacci(n - 2) + recurFibonacci(n - 1);
+  }
+
+  console.log(recurFibonacci1(7));
 }
 
 // 피보나치 수열을 memoized 함수를 이용하여 작성하시오.
 // [0, 1, 1, 2, 3, 5, 8, 13, 21, 34];
 function q6() {
-  function memoFibonacci() {}
+  const memoFibonacci = memoized(function (n) {
+    if (n <= 1) return n;
+    return memoFibonacci(n - 2) + memoFibonacci(n - 1);
+  });
+
+  // 함수를 받아서 메모이징하는 함수
+  function memoized(fn) {
+    const cache = {};
+    return function (k) {
+      // 캐시가 있으면 리턴하고, 없으면 새로 구하고 캐시해라
+      return cache[k] || (cache[k] = fn(k));
+    };
+  }
+
+  console.log(memoFibonacci(7));
 }
 
 console.log("\n----------1----------");
