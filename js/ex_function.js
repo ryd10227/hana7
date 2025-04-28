@@ -23,7 +23,7 @@ function q2() {
   };
   //   debounce();
 
-  const throttle = (cd, delay) => {
+  const throttle = (cb, delay) => {
     let timer;
     return (...args) => {
       if (timer) return;
