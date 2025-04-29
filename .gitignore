@@ -2,3 +2,4 @@ node_modules
 ttt
 dist
 *.local
+/sql/mysql
