@@ -13,7 +13,4 @@ stash1 done777
 200
 300
 400
-500
-regist
-pr test1
-pr test2
+
