@@ -1,30 +1,30 @@
-create table Professor (
-  id smallint primary key not null auto_increment comment '교수번호',
-  name varchar(31) not null comment '교수명',
-  likecnt int not null default 0
+CREATE TABLE Professor (
+    id SMALLINT PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT '교수번호',
+    name VARCHAR(31) NOT NULL COMMENT '교수명',
+    likecnt INT NOT NULL DEFAULT 0
 );
 
 -- primary key는 alter 할 수 없음
 -- alter table Prof modify column id smallint unsigned primary key not null comment '교수번호';
 alter table Professor modify column id smallint unsigned not null comment '교수번호';
 
-create table Subject (
-  id smallint unsigned not null primary key,
-  name varchar(31) not null comment '과목명',
-  professor smallint unsigned null comment '교수번호',
-  foreign key fk_Subject_professor_Professor (professor) references Professor (id)
-	on Update cascade on Delete set null
+CREATE TABLE Subject (
+    id SMALLINT UNSIGNED NOT NULL PRIMARY KEY,
+    name VARCHAR(31) NOT NULL COMMENT '과목명',
+    professor SMALLINT UNSIGNED NULL COMMENT '교수번호',
+    FOREIGN KEY (professor)
+        REFERENCES Professor (id)
+        ON UPDATE CASCADE ON DELETE SET NULL
 );
 
-desc Student;
-
-create table Enroll (
-  id int unsigned not null primary key,
-  subject smallint unsigned not null comment '과목번호',
-  student int unsigned not null comment '학번',
-  foreign key fk_Enroll_subject (subject)
-								-- 과목이 지워지면 같이 지워지게
-	references Subject (id) on Update cascade on Delete cascade,
-  foreign key fk_Enroll_student (student)
-	references Student (id) on Update cascade on Delete cascade
+CREATE TABLE Enroll (
+    id INT UNSIGNED NOT NULL PRIMARY KEY,
+    subject SMALLINT UNSIGNED NOT NULL COMMENT '과목번호',
+    student INT UNSIGNED NOT NULL COMMENT '학번',
+    FOREIGN KEY (subject)
+        REFERENCES Subject (id)
+        ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (student)
+        REFERENCES Student (id)
+        ON UPDATE CASCADE ON DELETE CASCADE
 );
