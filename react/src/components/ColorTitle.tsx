@@ -1,16 +1,20 @@
-import type { PropsWithChildren } from 'react';
+import type { CSSProperties, PropsWithChildren } from "react";
 
-const ColorTitle = ({
-  color,
-  children,
-}: PropsWithChildren<{ color: string }>) => {
-  // console.log('@@@ ColorTitle!!', color);
-  return (
-    <>
-      <style>{`h2 { color: ${color}; }`}</style>
-      <h2>{children}</h2>
-    </>
-  );
+type Props = {
+  color: string;
+  size: "sm" | "md" | "lg";
+};
+
+const sizeVariant: Record<Props["size"], CSSProperties> = {
+  sm: { fontSize: "1rem" },
+  md: { fontSize: "1.3rem" },
+  lg: { fontSize: "1.7rem" },
+};
+
+const ColorTitle = ({ color, size, children }: PropsWithChildren<Props>) => {
+  const style = Object.assign({}, sizeVariant[size], { color });
+
+  return <h2 style={style}>{children}</h2>;
 };
 
 export default ColorTitle;

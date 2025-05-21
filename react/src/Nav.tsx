@@ -1,7 +1,7 @@
-import clsx from 'clsx';
-import './Nav.css';
-import { useSession } from './contexts/session/SessionContext';
-import { NavLink } from 'react-router-dom';
+import clsx from "clsx";
+import "./Nav.css";
+import { useSession } from "./contexts/session/SessionContext";
+import { NavLink } from "react-router-dom";
 
 export default function Nav() {
   const {
@@ -9,17 +9,17 @@ export default function Nav() {
   } = useSession();
   return (
     <>
-      <ul className='nav'>
+      <ul className="nav">
         <li>
-          <NavLink to='/' replace>
+          <NavLink to="/" replace>
             Home
           </NavLink>
         </li>
         {loginUser ? (
           <li>
             <NavLink
-              to='/my'
-              style={({ isActive }) => ({ color: isActive ? 'red' : 'blue' })}
+              to="/my"
+              style={({ isActive }) => ({ color: isActive ? "red" : "blue" })}
             >
               My
             </NavLink>
@@ -27,7 +27,7 @@ export default function Nav() {
         ) : (
           <li>
             <NavLink
-              to='/login'
+              to="/login"
               className={({ isActive }) => clsx({ red: isActive })}
             >
               Login
@@ -35,16 +35,16 @@ export default function Nav() {
           </li>
         )}
         <li>
-          <NavLink to='/posts'>Posts</NavLink>
+          <NavLink to="/posts">Posts</NavLink>
         </li>
         <li>
-          <NavLink to='/items'>Items</NavLink>
+          <NavLink to="/items">Items</NavLink>
         </li>
         <li>
-          <NavLink to='/hello'>About</NavLink>
+          <NavLink to="/hello">About</NavLink>
         </li>
         <li>
-          <NavLink to='/sadfdsafafds'>NotFound</NavLink>
+          <NavLink to="/sadfdsafafds">NotFound</NavLink>
         </li>
       </ul>
     </>

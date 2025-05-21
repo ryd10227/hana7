@@ -1,8 +1,9 @@
-import { FaHome } from 'react-icons/fa';
-import { useCounter } from '../contexts/counter/useCounter';
-import { useRef } from 'react';
-import type { HelloHandler } from './Hello';
-import { useLocation } from 'react-router-dom';
+import { FaHome } from "react-icons/fa";
+import { useCounter } from "../contexts/counter/useCounter";
+import { useRef } from "react";
+import type { HelloHandler } from "./Hello";
+import { useLocation } from "react-router-dom";
+import { Button } from "./atoms/Button";
 
 export default function Home() {
   const { count } = useCounter();
@@ -13,13 +14,20 @@ export default function Home() {
 
   const location = useLocation();
   const { state } = location;
-  console.log('🚀 state:', state);
+  console.log("🚀 state:", state);
 
   return (
     <>
       <h2>
         <FaHome /> HOME ({count})
       </h2>
+
+      <Button variant="primary" size="md" onClick={() => alert("buttonnnn")}>
+        Button!
+      </Button>
+      <Button variant="danger" size="md" onClick={() => alert("Danger!")}>
+        Danger!
+      </Button>
 
       <button onClick={() => helloButtonRef.current?.click()}>
         Click Hello
