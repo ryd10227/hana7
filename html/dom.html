@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dom</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="p-4">
+    <form name="frm" id="frm" class="p-16 border border-red-300">
+      <div id="dv" class="p-16 border border-red-300">
+        <button id="btn" type="submit" class="p-16 border border-red-300">
+          Submit
+        </button>
+      </div>
+    </form>
+  </body>
+</html>
+
+<script>
+  const frm = document.getElementById("frm");
+  const div = document.getElementsByTagName("div")[0];
+  const btn = document.getElementById("btn");
+
+  [frm, div, btn].forEach((dom) => {
+    dom.addEventListener("click", (evt) => {
+      evt.preventDefault();
+      evt.stopPropagation();
+      console.log(dom, event.target, evt.currentTarget);
+    });
+  });
+</script>
